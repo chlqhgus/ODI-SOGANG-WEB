@@ -93,10 +93,22 @@ body {
 
 .search-input {
   flex: 1;
-  padding: 10px 15px;
+  padding: 10px 5px;
   border: none;
-  border-radius: 25px 0 0 25px;
-  font-size: 14px;
+  border-radius: 3.125rem;
+  color: #737373;
+  background: #efefef;
+  height: 3vw;
+
+  font-family: Switzer;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.3125rem; /* 84% */
+  letter-spacing: -0.02rem;
+
+  padding-left: 2.5rem;
+  margin-right: 0.8rem;
 }
 
 .checked {
@@ -104,9 +116,24 @@ body {
 }
 
 .dropdown-image {
-    width:2.5rem;
-    height:auto;
-    padding-right:1.6rem;
+  width: 2.5rem;
+  height: auto;
+  padding-right: 1.6rem;
+}
+
+.search-image {
+  width: 5rem;
+  height: auto;
+}
+
+.keyword-search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 3.125rem;
+  background: transparent;
+
+  cursor: pointer;
 }
 
 /* Keywords Section */

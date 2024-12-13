@@ -55,11 +55,16 @@ function MainPage() {
           </div>
         )}
 
-        <div className="search-bar">
+        <div className="keyword-search-bar">
           <input
             type="text"
             placeholder="ex) 줌공, 콘센트, 팀플..."
             className="search-input"
+          />
+          <img
+            src="/images/search.png"
+            alt="search-image"
+            className="search-image"
           />
         </div>
       </div>
