@@ -7,6 +7,13 @@ function MainPage() {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  /* Modal open 관련  */
+
+  const [activeKeyword, setActiveKeyword] = useState("과제");
+  const handleKeywordClick = (keyword) => {
+    setActiveKeyword(keyword);
+  };
+
   return (
     <div className="main-container">
       {/* Background sogangUniv img */}
@@ -71,28 +78,35 @@ function MainPage() {
 
       {/* Keywords Section */}
       <section className="keywords-section">
-        <div className="title-with-img">
-          <h2 className="keywords-title">테마별 추천 키워드</h2>
-          <img
-            src="/images/Lightbulb_on.png"
-            alt="bulb-image"
-            className="bulb-image"
-          />
-        </div>
-        <div className="keywords-container">
-          <div id="keyword-button-selected">
-            <button className="keyword-button primary">과제</button>
-            <div class="keyword-detail-button">
-              <div class="corner-dashed-line"></div>
-              <button className="keyword-button">노트북</button>
-              <button className="keyword-button">와이파이</button>
-              <button className="keyword-button">콘센트</button>
+      <div className="keywords-container">
+          {/* 각 키워드 버튼 */}
+          {["과제", "팀플", "스터디", "휴식", "줌수업"].map((keyword) => (
+            <div key={keyword} className="keyword-wrapper">
+              <button
+                className={`keyword-button ${
+                  activeKeyword === keyword ? "primary" : ""
+                }`}
+                onClick={() => handleKeywordClick(keyword)}
+              >
+                {keyword}
+              </button>
+
+              {activeKeyword === keyword && (
+                <div className="keyword-detail-button">
+                  <div className="corner-dashed-line"></div>
+                  <button className="keyword-detail">
+                    노트북 <span className="icon">⊕</span>
+                  </button>
+                  <button className="keyword-detail">
+                    와이파이 <span className="icon">⊕</span>
+                  </button>
+                  <button className="keyword-detail">
+                    콘센트 <span className="icon">⊕</span>
+                  </button>
+                </div>
+              )}
             </div>
-          </div>
-          <button className="keyword-button">팀플</button>
-          <button className="keyword-button">스터디</button>
-          <button className="keyword-button">휴식</button>
-          <button className="keyword-button">줌수업</button>
+          ))}
         </div>
       </section>
 

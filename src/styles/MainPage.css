@@ -157,7 +157,7 @@ body {
 .keywords-container {
   display: flex;
   flex-wrap: wrap;
-
+  position: relative;
   gap: 0.8rem;
 }
 .keyword-button {
@@ -188,6 +188,12 @@ body {
 }
 .keyword-button:hover {
   background-color: #dcdcdc;
+  color: #4a4458;
+}
+
+.keyword-button.primary:hover {
+  background-color: #4a4458;
+  color: #e8def8;
 }
 
 .title-with-img {
@@ -212,18 +218,52 @@ body {
 .corner-dashed-line {
   width: 1.5rem;
   height: 1.5rem;
-  border-bottom: 2px dashed #bcbbbd;
-  border-left: 2px dashed #bcbbbd;
+  border-bottom: 1.5px dashed #bcbbbd;
+  border-left: 1.5px dashed #bcbbbd;
   margin-left: 1.5rem;
   margin-top: 0.3rem;
+  margin-bottom: 1.2rem;
 }
 
 #keyword-button-selected {
   display: flex;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
 }
 
 .keyword-detail-button {
-    
+  position: absolute; /* 부모 요소 기준으로 절대 위치 */
+  top: 6.5rem; /* 키워드 버튼 아래로 위치 */
+  left: 25%;
+  /* 가운데 정렬 */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1;
+}
+
+.keyword-detail-button button {
+  width: 5.5rem;
+  height: 1.9rem;
+  flex-shrink: 0;
+  border-radius: 1.8rem;
+  border: 1.5px solid #4a4458;
+
+  background: #fff;
+  text-align: left;
+
+  color: #4a4458;
+  text-align: center;
+  font-family: Switzer;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.3125rem; /* 84% */
+  letter-spacing: -0.02rem;
+
+  cursor: pointer;
+}
+
+.keyword-wrapper {
+  position: relative;
 }
