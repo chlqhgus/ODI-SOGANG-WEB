@@ -267,3 +267,33 @@ body {
 .keyword-wrapper {
   position: relative;
 }
+
+.tag-button {
+  display: inline-flex;
+  padding: 0.3rem 0.8rem;
+  align-items: center;
+  border-radius: 1.25rem;
+  background: #5d5fef;
+
+  color: #fff;
+
+  text-align: center;
+  font-family: Switzer;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.3125rem; /* 161.538% */
+  letter-spacing: -0.02rem;
+
+  border: none;
+  cursor: pointer;
+}
+.tags-container {
+  padding-top: 0.5rem;
+  display: flex;
+  gap: 5px;
+}
+
+.remove-icon {
+  padding-left: 10px;
+}
