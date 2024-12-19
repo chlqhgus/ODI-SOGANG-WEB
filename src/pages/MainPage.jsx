@@ -3,6 +3,13 @@ import "../styles/MainPage.css";
 import Modal from "./Modal";
 
 function MainPage() {
+  const keywordDetails = {
+    과제: ["노트북", "Wi-Fi", "콘센트"],
+    팀플: ["넓은", "대화가능", "노트북"],
+    스터디: ["조용한", "책상", "Wi-Fi"],
+    휴식: ["빈백", "침대", "음료"],
+    줌수업: ["프라이빗", "헤드셋"],
+  };
   /* Modal 관련  */
   /* -------------------modal open-------------------- */
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,6 +31,44 @@ function MainPage() {
   /* -------------------input창-------------------- */
   const [inputValue, setInputValue] = useState(""); // 입력값 상태
   const [tags, setTags] = useState([]);
+  const [activeKeywordDetails, setActiveKeywordDetails] =
+    useState(keywordDetails);
+  const [animatingDetail, setAnimatingDetail] = useState(null); // 애니메이션 상태
+
+  // 키워드 버튼 클릭 시 태그로 이동
+  const handleKeywordDetailClick = (detail) => {
+    // 태그에 추가
+    if (!tags.includes(detail)) {
+      setTags((prevTags) => [...prevTags, detail]);
+    }
+
+    // 키워드 상세에서 제거
+    setActiveKeywordDetails((prevDetails) => {
+      const updatedDetails = { ...prevDetails };
+      for (const key in updatedDetails) {
+        updatedDetails[key] = updatedDetails[key].filter(
+          (item) => item !== detail
+        );
+      }
+      return updatedDetails;
+    });
+  };
+
+  // 태그 X 버튼 클릭 시 다시 키워드로 이동
+  const handleTagRemove = (tag) => {
+    setTags((prevTags) => prevTags.filter((t) => t !== tag)); // 태그에서 제거
+
+    // 키워드 상세로 복원
+    setActiveKeywordDetails((prevDetails) => {
+      const updatedDetails = { ...prevDetails };
+      for (const key in keywordDetails) {
+        if (keywordDetails[key].includes(tag)) {
+          updatedDetails[key] = [...updatedDetails[key], tag];
+        }
+      }
+      return updatedDetails;
+    });
+  };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -31,10 +76,14 @@ function MainPage() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && inputValue.trim() !== "") {
-      if (!tags.includes(inputValue)) {
-        setTags([...tags, inputValue]); // 새로운 버튼 추가
+      event.preventDefault(); // 기본 동작 방지
+
+      // 중복 값 검사
+      if (!tags.includes(inputValue.trim())) {
+        setTags((prevTags) => [...prevTags, inputValue.trim()]); // 새로운 버튼 추가
       }
-      setInputValue(""); // 입력창 초기화
+
+      setInputValue(""); // 입력값 초기화
     }
   };
 
@@ -46,14 +95,6 @@ function MainPage() {
   const [activeKeyword, setActiveKeyword] = useState("과제");
   const handleKeywordClick = (keyword) => {
     setActiveKeyword(keyword);
-  };
-
-  const keywordDetails = {
-    과제: ["노트북", "Wi-Fi", "콘센트"],
-    팀플: ["넓은", "대화가능", "노트북"],
-    스터디: ["조용한", "책상", "Wi-Fi"],
-    휴식: ["빈백", "침대", "음료"],
-    줌수업: ["프라이빗", "헤드셋"],
   };
 
   const [selectedPeople, setSelectedPeople] = useState("1명");
@@ -257,7 +298,7 @@ function MainPage() {
             <button
               key={index}
               className="tag-button"
-              onClick={() => handleRemoveTag(tag)} // 버튼 제거
+              onClick={() => handleTagRemove(tag)} // 태그 제거
             >
               {tag} <span className="remove-icon">⊗</span>
             </button>
@@ -283,8 +324,12 @@ function MainPage() {
               {activeKeyword === keyword && (
                 <div className="keyword-detail-button">
                   <div className="corner-dashed-line"></div>
-                  {keywordDetails[keyword].map((detail) => (
-                    <button key={detail} className="keyword-detail">
+                  {activeKeywordDetails[keyword].map((detail) => (
+                    <button
+                      key={detail}
+                      className="keyword-detail"
+                      onClick={() => handleKeywordDetailClick(detail)} // 태그로 이동
+                    >
                       {detail} <span className="icon"> ⊕</span>
                     </button>
                   ))}

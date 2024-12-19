@@ -225,10 +225,45 @@ body {
   margin-bottom: 1.2rem;
 }
 
+@keyframes slideAndFade {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
+
 #keyword-button-selected {
   display: flex;
   align-items: left;
   flex-direction: column;
+}
+.keyword-detail {
+  position: relative;
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.keyword-detail.animate {
+  animation: slideAndFade 0.5s forwards;
+}
+
+.tag-appear {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .keyword-detail-button {
@@ -346,14 +381,13 @@ body {
   transform: scale(0.95); /* 클릭 시 약간 눌리는 효과 */
 }
 
-
-.modal-section{
+.modal-section {
   color: #272727;
 
-font-family: Switzer;
-font-size: 0.875rem;
-font-style: normal;
-font-weight: 700;
-line-height: 1.3125rem; /* 150% */
-letter-spacing: -0.02rem;
+  font-family: Switzer;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3125rem; /* 150% */
+  letter-spacing: -0.02rem;
 }
