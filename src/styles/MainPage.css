@@ -391,3 +391,47 @@ body {
   line-height: 1.3125rem; /* 150% */
   letter-spacing: -0.02rem;
 }
+
+/* ------------------------스피너------------------------ */
+
+.search-loading {
+  text-align: center;
+  margin-top: 30px;
+
+  color: #000;
+  text-align: center;
+  font-family: Switzer;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.7rem; /* 116.667% */
+  letter-spacing: -0.02rem;
+
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.search-loading.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.spinner {
+  margin: 50px auto;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #000;
+  border-radius: 80%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

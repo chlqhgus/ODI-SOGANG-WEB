@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/MainPage.css";
 import Modal from "./Modal";
 
 function MainPage() {
+  const navigate = useNavigate();
   const keywordDetails = {
     과제: ["노트북", "Wi-Fi", "콘센트"],
     팀플: ["넓은", "대화가능", "노트북"],
@@ -105,6 +107,20 @@ function MainPage() {
   const handlePeopleChange = (value) => setSelectedPeople(value);
   const handleTimeChange = (value) => setSelectedTime(value);
   const handleLocationChange = (value) => setSelectedLocation(value);
+
+  /* -------------------searching-------------------- */
+  const [searching, setSearching] = useState(false); // 검색 중인지 여부
+  const [loadingVisible, setLoadingVisible] = useState(false);
+
+  const handleSearchClick = () => {
+    setSearching(true); // 검색 상태로 전환
+    setTimeout(() => {
+      setLoadingVisible(true);
+      setTimeout(() => {
+        navigate("/finding-place"); // 'finding-place' 경로로 이동
+      }, 3000);
+    }, 50);
+  };
 
   /* ------------------------------------------------------------------------  
   ---------------------------------------------------------------------------
@@ -276,21 +292,24 @@ function MainPage() {
           </div>
         )}
 
-        <div className="keyword-search-bar">
-          <input
-            type="text"
-            placeholder="ex) 줌공, 콘센트, 팀플..."
-            className="search-input"
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-          />
-          <img
-            src="/images/search.png"
-            alt="search-image"
-            className="search-image"
-          />
-        </div>
+        {!searching && (
+          <div className="keyword-search-bar">
+            <input
+              type="text"
+              placeholder="ex) 줌공, 콘센트, 팀플..."
+              className="search-input"
+              value={inputValue}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+            />
+            <img
+              src="/images/search.png"
+              alt="search-image"
+              className="search-image"
+              onClick={handleSearchClick} // 돋보기 클릭 이벤트
+            />
+          </div>
+        )}
 
         {/* 동적으로 생성된 버튼들 */}
         <div className="tags-container">
@@ -307,38 +326,50 @@ function MainPage() {
       </div>
 
       {/* Keywords Section */}
-      <section className="keywords-section">
-        <div className="keywords-container">
-          {/* 각 키워드 버튼 */}
-          {["과제", "팀플", "스터디", "휴식", "줌수업"].map((keyword) => (
-            <div key={keyword} className="keyword-wrapper">
-              <button
-                className={`keyword-button ${
-                  activeKeyword === keyword ? "primary" : ""
-                }`}
-                onClick={() => handleKeywordClick(keyword)}
-              >
-                {keyword}
-              </button>
+      {!searching && (
+        <section className="keywords-section">
+          <div className="keywords-container">
+            {["과제", "팀플", "스터디", "휴식", "줌수업"].map((keyword) => (
+              <div key={keyword} className="keyword-wrapper">
+                <button
+                  className={`keyword-button ${
+                    activeKeyword === keyword ? "primary" : ""
+                  }`}
+                  onClick={() => handleKeywordClick(keyword)}
+                >
+                  {keyword}
+                </button>
 
-              {activeKeyword === keyword && (
-                <div className="keyword-detail-button">
-                  <div className="corner-dashed-line"></div>
-                  {activeKeywordDetails[keyword].map((detail) => (
-                    <button
-                      key={detail}
-                      className="keyword-detail"
-                      onClick={() => handleKeywordDetailClick(detail)} // 태그로 이동
-                    >
-                      {detail} <span className="icon"> ⊕</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+                {activeKeyword === keyword && (
+                  <div className="keyword-detail-button">
+                    <div className="corner-dashed-line"></div>
+                    {activeKeywordDetails[keyword].map((detail) => (
+                      <button
+                        key={detail}
+                        className="keyword-detail"
+                        onClick={() => handleKeywordDetailClick(detail)} // 태그로 이동
+                      >
+                        {detail} <span className="icon"> ⊕</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {searching && (
+        <div className={`search-loading ${loadingVisible ? "show" : ""}`}>
+          <p>
+            키워드에 해당하는 장소를
+            <br />
+            찾아보는 중이에요...
+          </p>
+          <div className="spinner"></div>
         </div>
-      </section>
+      )}
 
       {/* Footer */}
       <footer className="footer">Sogang University</footer>
