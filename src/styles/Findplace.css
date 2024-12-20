@@ -1,7 +1,6 @@
 * {
   font-family: Switzer;
   font-style: normal;
-  font-weight: 700;
   line-height: 120%;
   letter-spacing: -0.02rem;
 }
@@ -17,9 +16,13 @@
   height: 100%;
 }
 
+.back-arrow {
+  cursor: pointer;
+  padding-top: 2rem;
+}
 .places-list {
   flex: 2.5;
-  background: #e5e5f0;
+  background: #efeff6;
   padding: 2rem 3rem;
   overflow-y: auto;
 }
@@ -27,7 +30,7 @@
 .places-list h1 {
   font-size: 1.4rem;
   margin-bottom: 20px;
-  padding-top: 2rem;
+  padding-top: 0.4rem;
   font-weight: 800;
   color: #272727;
 }
@@ -62,19 +65,27 @@
 }
 
 .place-item.active {
-  background: #e0f2fe;
+  background: #c3c3ed;
   transform: scale(1.05);
 }
 
 .place-item h3 {
-  font-size: 18px;
+  color: #272727;
+
+  font-family: Switzer;
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3125rem; /* 140% */
+  letter-spacing: -0.02rem;
   margin-bottom: 5px;
 }
 
 .place-item .time {
   font-size: 14px;
   color: #555;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
 }
 
 .place-item .tags {
@@ -84,11 +95,28 @@
 }
 
 .place-item .tag {
-  background: #dbeafe;
-  color: #1e40af;
-  padding: 5px 10px;
+  border-radius: 1.25rem;
+  border: 1px solid #4a4458;
+
+  background: rgba(241, 241, 241, 0);
+  padding: 3px 10px;
   border-radius: 20px;
   font-size: 12px;
+
+  color: #4a4458;
+
+  text-align: center;
+  font-family: Switzer;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3125rem; /* 161.538% */
+  letter-spacing: -0.02rem;
+}
+.tag.highlight {
+  background: #5d5fef;
+  color: white;
+  border: none;
 }
 
 /* --------------------우측페이지-------------------- */
@@ -106,38 +134,97 @@
   height: 20rem;
 }
 
-.details-header h2 {
-  font-size: 24px;
-  margin-bottom: 5px;
+.details-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border-radius: 0.3125rem 0.3125rem 0rem 0rem;
+  background: #7072cc;
+  padding: 0rem 1rem;
+  margin-top: 0.5rem;
 }
 
-.details-header .subtitle {
-  font-size: 18px;
-  color: #6b7280;
-  margin-bottom: 10px;
+.details-header h2 {
+  color: #fff;
+
+  font-family: Switzer;
+  font-size: 1.5625rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3125rem; /* 84% */
+  letter-spacing: -0.02rem;
+}
+
+.details-header .detail-place {
+  color: #fff;
+  font-family: Switzer;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.3125rem; /* 140% */
+  letter-spacing: -0.02rem;
 }
 
 .details-header .time {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 20px;
+  color: #fff;
+
+  font-family: Switzer;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3125rem; /* 175% */
+  letter-spacing: -0.02rem;
 }
 
 .description {
-  font-size: 14px;
   color: #333;
+  margin: 0;
+  padding-top: 2rem;
+
+  font-family: Switzer;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 0.9375rem; /* 150% */
+  letter-spacing: -0.02rem;
+}
+
+.details-contents {
+  border-radius: 0.3125rem;
+  background: #efeff6;
+  padding: 0rem 2rem;
 }
 
 .features {
-  margin-top: 20px;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .feature-item {
+  width: 90%;
   margin-bottom: 15px;
+  color: #747474;
+
+  font-family: Switzer;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.9375rem; /* 150% */
+  letter-spacing: -0.02rem;
 }
 
 .feature-item h3 {
-  font-size: 16px;
-  margin-bottom: 5px;
-  color: #1e40af;
+  font-family: Switzer;
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.3125rem;
+  letter-spacing: -0.02rem;
+
+  color: #747474;
+}
+
+.highlight {
+  color: #5d5fef;
+
 }

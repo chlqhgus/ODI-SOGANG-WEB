@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/MainPage.css";
 import Modal from "./Modal";
@@ -12,15 +12,30 @@ function MainPage() {
     휴식: ["빈백", "침대", "음료"],
     줌수업: ["프라이빗", "헤드셋"],
   };
-  /* Modal 관련  */
+
   /* -------------------modal open-------------------- */
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const [selectedHour, setSelectedHour] = useState("12");
+  const [selectedHour, setSelectedHour] = useState("0");
   const [selectedMinute, setSelectedMinute] = useState("0");
   const [selectedPeriod, setSelectedPeriod] = useState("AM");
+
+  useEffect(() => {
+    const now = new Date();
+
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+
+    const period = hours >= 12 ? "PM" : "AM";
+    const formattedHour = hours % 12 === 0 ? "12" : String(hours % 12);
+    const formattedMinute = String(minutes).padStart(2, "0");
+
+    setSelectedHour(formattedHour);
+    setSelectedMinute(formattedMinute);
+    setSelectedPeriod(period);
+  }, []);
 
   /* -------------------modal time-------------------- */
 
@@ -247,7 +262,7 @@ function MainPage() {
 
               {/* 출발 위치 섹션 */}
               <div className="modal-section">
-                <h3>출발 위치</h3>
+                <h3>시설 위치</h3>
                 <div className="location-selection">
                   <select
                     className="location-dropdown"
@@ -328,6 +343,14 @@ function MainPage() {
       {/* Keywords Section */}
       {!searching && (
         <section className="keywords-section">
+          <div className="title-with-img">
+            <h2 className="keywords-title">테마별 추천 키워드</h2>
+            <img
+              src="/images/Lightbulb_on.png"
+              alt="bulb-image"
+              className="bulb-image"
+            />
+          </div>
           <div className="keywords-container">
             {["과제", "팀플", "스터디", "휴식", "줌수업"].map((keyword) => (
               <div key={keyword} className="keyword-wrapper">

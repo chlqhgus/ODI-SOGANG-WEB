@@ -138,7 +138,8 @@ body {
 
 /* Keywords Section */
 .keywords-section {
-  margin-top: 40px;
+  margin-top: 0.7rem;
+  margin-bottom: 5rem;
   width: 50vw;
 }
 
@@ -199,7 +200,8 @@ body {
 .title-with-img {
   display: flex;
   align-items: center;
-  padding-bottom: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 .bulb-image {
@@ -213,6 +215,13 @@ body {
   padding: 20px;
   color: #777;
   font-size: 14px;
+
+  font-family: Switzer;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3125rem; /* 150% */
+  letter-spacing: -0.02rem;
 }
 
 .corner-dashed-line {
@@ -434,4 +443,15 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.tags-container h3 {
+  color: #272727;
+
+  font-family: Switzer;
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3125rem; /* 150% */
+  letter-spacing: -0.02rem;
 }
