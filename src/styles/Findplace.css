@@ -123,7 +123,8 @@
 .place-details {
   flex: 7;
   padding: 20px;
-  padding-left: 2rem;
+  padding-left: 3rem;
+  padding-right:3rem;
   background: #fff;
   border-left: 1px solid #e5e7eb;
   overflow-y: auto;
@@ -187,6 +188,9 @@
   font-weight: 600;
   line-height: 0.9375rem; /* 150% */
   letter-spacing: -0.02rem;
+
+  padding-bottom: 1.5rem;
+  border-bottom: 1.5px solid #d9d2e8;
 }
 
 .details-contents {
@@ -202,7 +206,7 @@
 
 .feature-item {
   width: 90%;
-  margin-bottom: 15px;
+  margin-bottom: 2rem;
   color: #747474;
 
   font-family: Switzer;
@@ -226,5 +230,9 @@
 
 .highlight {
   color: #5d5fef;
+}
 
+.feature-description {
+  white-space: pre-line;
+  line-height: 80%;
 }
